@@ -308,7 +308,7 @@ const App = () => {
   const newNoteMutation = useMutation(createNote, {
     onSuccess: (newNote) => {
       const notes = queryClient.getQueryData('notes') // highlight-line
-      queryClient.setQueryData('notes', notes.concat(newNote)) // highlight-line
+      queryClient.setQueryData(['notes'], notes.concat(newNote)) // highlight-line *** MUOKATTU myös tähän hakasulkeet query keyn ympärille
     }
   })
   // ...
