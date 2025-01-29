@@ -305,7 +305,8 @@ Muutos uuden muistiinpanon lisäävän mutaation osalta on seuraavassa:
 const App = () => {
   const queryClient =  useQueryClient()
 
-  const newNoteMutation = useMutation(createNote, {
+  const newNoteMutation = useMutation({
+    mutationFn: createNote, 
     onSuccess: (newNote) => {
       const notes = queryClient.getQueryData('notes') // highlight-line
       queryClient.setQueryData('notes', notes.concat(newNote)) // highlight-line
