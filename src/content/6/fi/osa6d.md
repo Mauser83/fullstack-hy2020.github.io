@@ -262,7 +262,7 @@ const App = () => {
   const updateNoteMutation = useMutation( //highligh-line
     {mutationFn: updateNote, // highlight-line
     onSuccess: () => { // highligh-line
-      queryClient.invalidateQueries({ queryKey: ['notes'] }) // highlight-line
+      queryClient.invalidateQueries({ queryKey: ['notes'] }) // highlight-line *** MUOKATTU query keyn ympärille hakasulkeet koska muuten ei toimi
     },
   })
 
@@ -286,7 +286,7 @@ Sovellus toimii hyvin, ja koodikin on suhteellisen yksinkertaista. Erityisesti y
   const updateNoteMutation = useMutation(
     {mutationFn: updateNote,
     onSuccess: () => {
-      queryClient.invalidateQueries('notes') // highlight-line
+      queryClient.invalidateQueries(['notes']) // highlight-line
     },
   })
 ```
@@ -307,7 +307,7 @@ const App = () => {
 
   const newNoteMutation = useMutation(createNote, {
     onSuccess: (newNote) => {
-      const notes = queryClient.getQueryData('notes') // highlight-line
+      const notes = queryClient.getQueryData(['notes']) // highlight-line *** MUOKATTU query keyn ympärille hakasulkeet koska muuten ei toimi
       queryClient.setQueryData('notes', notes.concat(newNote)) // highlight-line
     }
   })
